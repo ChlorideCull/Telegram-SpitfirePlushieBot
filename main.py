@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 from telegram import Updater
-import derpibooru
 import traceback
 import sys
-import random
 import datetime
 import os
 
@@ -55,10 +53,9 @@ class Spitfire:
         self.help(bot, update)
 
     def help(self, bot, update):
-        bot.sendMessage(chat_id=update.message.chat_id, text="""derpibooru - send an image that was recently uploaded to derpiboo.ru
-derpibooru search <search query> - send an image from a search on derpiboo.ru
-derpibooru select - show available tag lists
-derpibooru select <list> - send a random image from the tags of the selected list""")
+        bot.sendMessage(chat_id=update.message.chat_id, text="""well gee i'm actually kinda useless right now, besides
+        logging what you say for pretty graphs, i guess
+        """)
 
     def onMessage(self, bot, update):
         if update.message.chat_id not in self.openlogs:
@@ -70,33 +67,8 @@ derpibooru select <list> - send a random image from the tags of the selected lis
         self.openlogs[update.message.chat_id].flush()
 
     def derpibooru_lookup(self, bot, update, args=list()):
-        def _process_imgs(bot, update, imgs):
-            if len(imgs) > 0:
-                pick = random.choice(imgs)
-                bot.sendPhoto(chat_id=update.message.chat_id, photo=pick.image)
-                bot.sendMessage(chat_id=update.message.chat_id, text=("sauce: {}\n"
-                                                                      "This image is #{}, randomly selected"
-                                                                      " from the latest 10 of {} images.").format(
-                        pick.url, pick.scope["this"], pick.scope["total"]))
-            else:
-                bot.sendMessage(chat_id=update.message.chat_id, text="nope, found zilch, zero, nada.")
-
-        if len(args) == 0:
-            imgs = []
-            for image in derpibooru.Search().filter("56027").limit(10):
-                imgs.append(image)
-            _process_imgs(bot, update, imgs)
-        elif args[0] == "select":
-            bot.sendMessage(chat_id=update.message.chat_id, text="There are currently no lists available.")
-        elif args[0] == "search" and len(args) == 1:
-            bot.sendMessage(chat_id=update.message.chat_id, text="jesus how could you fuck this up, RTFM")
-        elif args[0] == "search":
-            imgs = []
-            for image in derpibooru.Search().filter("56027").limit(10).query(" ".join(args[1:])):
-                imgs.append(image)
-            _process_imgs(bot, update, imgs)
-        else:
-            bot.sendMessage(chat_id=update.message.chat_id, text="you dun fucked up, you probably meant to search")
+        bot.sendMessage(chat_id=update.message.chat_id, text="dude this is kinda embarrassing for me but this got"
+                        "replaced by @DerpibooruImageBot, so go use that instead")
 
     def debug(self, bot, update, args=list()):
         if "here" in args:

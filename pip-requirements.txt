@@ -1,2 +1,1 @@
-git+https://github.com/ChlorideCull/DerPyBooru.git@non-standard-changes
 python-telegram-bot==3.1.2
