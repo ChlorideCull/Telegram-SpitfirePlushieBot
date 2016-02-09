@@ -32,10 +32,10 @@ class Spitfire:
             if self.onMessage != target:
                 self.onMessage(bot, update)
             if args is None:
-                print("Calling {}({}, {})".format(target, bot, update))
+                # print("Calling {}({}, {})".format(target, bot, update))
                 target(bot, update)
             else:
-                print("Calling {}({}, {}, {})".format(target, bot, update, args))
+                # print("Calling {}({}, {}, {})".format(target, bot, update, args))
                 target(bot, update, args)
         except Exception as exception:
             if (exception != KeyboardInterrupt) and (self.debug_chat_id is not None):
